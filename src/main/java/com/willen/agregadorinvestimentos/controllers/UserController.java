@@ -1,6 +1,7 @@
 package com.willen.agregadorinvestimentos.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,4 +44,10 @@ public class UserController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<User>> listUsers() {
+        var users = userService.listUsers();
+
+        return ResponseEntity.ok(users);
+    }
 }
