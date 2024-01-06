@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.willen.agregadorinvestimentos.entities.User;
 import com.willen.agregadorinvestimentos.services.UserService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -49,5 +50,13 @@ public class UserController {
         var users = userService.listUsers();
 
         return ResponseEntity.ok(users);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteById(@PathVariable String userId) {
+
+        userService.deleteById(userId);
+
+        return ResponseEntity.noContent().build();
     }
 }
