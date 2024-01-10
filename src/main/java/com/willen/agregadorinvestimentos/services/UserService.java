@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.willen.agregadorinvestimentos.controllers.dto.AccountResponseDTO;
 import com.willen.agregadorinvestimentos.controllers.dto.CreateAccountDTO;
 import com.willen.agregadorinvestimentos.controllers.dto.CreateUserDTO;
 import com.willen.agregadorinvestimentos.controllers.dto.UpdateUserDTO;
@@ -110,5 +111,16 @@ public class UserService {
                 createAccountDTO.number());
 
         billingAddressRepository.save(billingAddress);
+    }
+
+    public List<AccountResponseDTO> listAccounts(String userId) {
+        var user = userRepository.findById(UUID.fromString(userId))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // retorna como AccountResponseDTO
+        return user.getAccounts()
+                .stream()
+                .map(ac -> new AccountResponseDTO(ac.getAccountId().toString(), ac.getDescriprion()))
+                .toList();
     }
 }
