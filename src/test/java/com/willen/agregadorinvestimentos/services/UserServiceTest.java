@@ -26,8 +26,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.willen.agregadorinvestimentos.controllers.CreateUserDTO;
-import com.willen.agregadorinvestimentos.controllers.UpdateUserDTO;
+import com.willen.agregadorinvestimentos.controllers.dto.CreateUserDTO;
+import com.willen.agregadorinvestimentos.controllers.dto.UpdateUserDTO;
 import com.willen.agregadorinvestimentos.entities.User;
 import com.willen.agregadorinvestimentos.repositories.UserRepository;
 
