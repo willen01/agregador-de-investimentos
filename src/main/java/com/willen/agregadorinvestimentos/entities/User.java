@@ -1,6 +1,7 @@
 package com.willen.agregadorinvestimentos.entities;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +34,9 @@ public class User {
 
     @CreationTimestamp
     private Instant creationTimestamp;
+
+    @OneToMany(mappedBy = "user") // esse atributo está sendo mapeado na classe Accounts pelo atributo user
+    private List<Account> accounts;
 
     @UpdateTimestamp
     private Instant updatedTimestamp;
@@ -95,6 +100,14 @@ public class User {
 
     public void setUpdatedTimestamp(Instant updatedTimestamp) {
         this.updatedTimestamp = updatedTimestamp;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 
 }
