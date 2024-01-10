@@ -1,5 +1,6 @@
 package com.willen.agregadorinvestimentos.entities;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -33,6 +35,9 @@ public class Account {
     @PrimaryKeyJoinColumn // O relacionamento vai se dar passando a pk de Account para tabela de
                           // BillingAddress
     private BillingAddress billingAddress;
+
+    @OneToMany(mappedBy = "account")
+    private List<AccountStock> accountStock;
 
     public Account() {
     }
