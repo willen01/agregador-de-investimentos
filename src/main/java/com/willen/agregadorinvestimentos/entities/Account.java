@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +28,11 @@ public class Account {
 
     @Column(name = "description")
     private String descriprion;
+
+    @OneToOne(mappedBy = "account") // O relacionamento está sendo mapeado do outro lado pelo atributo account
+    @PrimaryKeyJoinColumn // O relacionamento vai se dar passando a pk de Account para tabela de
+                          // BillingAddress
+    private BillingAddress billingAddress;
 
     public Account() {
     }

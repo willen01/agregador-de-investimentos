@@ -5,6 +5,9 @@ import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,7 +15,14 @@ import jakarta.persistence.Table;
 public class BillingAddress {
 
     @Id
+    @Column(name = "account_id")
     private UUID id;
+
+    @OneToOne
+    @MapsId // pega o identificador que está sendo aplicado em account e atribui ao
+            // identificador dessa tabela (@Id)
+    @JoinColumn(name = "account_id") // esse atributo será o fk apontando para outra tabela
+    private Account account;
 
     @Column(name = "street")
     private String street;
