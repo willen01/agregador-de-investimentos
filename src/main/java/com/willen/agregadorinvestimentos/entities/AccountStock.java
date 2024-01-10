@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class AccountStock {
 
     @EmbeddedId
-    private AccountStockId id;
+    private AccountStockId accountStockId;
 
     @ManyToOne
     @MapsId("accountId") // atributo de Account que será o identificador
@@ -31,19 +31,19 @@ public class AccountStock {
     public AccountStock() {
     }
 
-    public AccountStock(AccountStockId id, Account account, Stock stock, Integer quantity) {
-        this.id = id;
+    public AccountStock(AccountStockId accountStockId, Account account, Stock stock, Integer quantity) {
+        this.accountStockId = accountStockId;
         this.account = account;
         this.stock = stock;
         this.quantity = quantity;
     }
 
-    public AccountStockId getId() {
-        return id;
+    public AccountStockId getAccountStockId() {
+        return accountStockId;
     }
 
-    public void setId(AccountStockId id) {
-        this.id = id;
+    public void setAccountStockId(AccountStockId accountStockId) {
+        this.accountStockId = accountStockId;
     }
 
     public Account getAccount() {
