@@ -2,6 +2,7 @@ package com.willen.agregadorinvestimentos.entities;
 
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ public class BillingAddress {
     @Column(name = "account_id")
     private UUID id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @MapsId // pega o identificador que está sendo aplicado em account e atribui ao
             // identificador dessa tabela (@Id)
     @JoinColumn(name = "account_id") // esse atributo será o fk apontando para outra tabela

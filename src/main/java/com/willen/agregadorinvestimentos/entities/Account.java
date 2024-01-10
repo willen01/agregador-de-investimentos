@@ -3,6 +3,7 @@ package com.willen.agregadorinvestimentos.entities;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,8 @@ public class Account {
     @Column(name = "description")
     private String descriprion;
 
-    @OneToOne(mappedBy = "account") // O relacionamento está sendo mapeado do outro lado pelo atributo account
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account") // O relacionamento está sendo mapeado do outro lado pelo
+                                                               // atributo account
     @PrimaryKeyJoinColumn // O relacionamento vai se dar passando a pk de Account para tabela de
                           // BillingAddress
     private BillingAddress billingAddress;
